@@ -1,0 +1,365 @@
+package org.rsmod.content.skills.thieving
+
+import dev.openrune.types.NpcServerType
+
+internal data class PickpocketDefinition(
+    val id: String,
+    val level: Int,
+    val xp: Int,
+    val dropTableId: String,
+    val category: Int? = null,
+    val npcInternals: Set<String> = emptySet(),
+    val internalAliases: Set<String> = emptySet(),
+    val aliases: Set<String> = emptySet(),
+    val stunDamageMin: Int,
+    val stunDamageMax: Int,
+    val stunDuration: Int,
+    val lowChance: Int,
+    val highChance: Int,
+)
+
+internal object PickpocketingData {
+    private val definitions: List<PickpocketDefinition> =
+        listOf(
+            define(
+                id = "citizen_man",
+                level = 1,
+                xp = 8,
+                dropTableId = "citizen_man",
+                category = 266,
+                aliases = setOf("man"),
+                stunDamageMin = 1,
+                stunDamageMax = 1,
+                stunDuration = 5,
+                lowChance = 180,
+                highChance = 240,
+            ),
+            define(
+                id = "citizen_woman",
+                level = 1,
+                xp = 8,
+                dropTableId = "citizen_woman",
+                category = 492,
+                aliases = setOf("woman"),
+                stunDamageMin = 1,
+                stunDamageMax = 1,
+                stunDuration = 5,
+                lowChance = 180,
+                highChance = 240,
+            ),
+            define(
+                id = "farmer",
+                level = 10,
+                xp = 14,
+                dropTableId = "farmer",
+                category = 498,
+                aliases = setOf("farmer"),
+                stunDamageMin = 1,
+                stunDamageMax = 2,
+                stunDuration = 5,
+                lowChance = 150,
+                highChance = 240,
+            ),
+            define(
+                id = "ham_male",
+                level = 15,
+                xp = 22,
+                dropTableId = "ham_male",
+                npcInternals = setOf("npc.favour_male_ham_civilian"),
+                aliases = setOf("male ham civilian", "male ham member"),
+                stunDamageMin = 1,
+                stunDamageMax = 3,
+                stunDuration = 5,
+                lowChance = 135,
+                highChance = 239,
+            ),
+            define(
+                id = "ham_female",
+                level = 20,
+                xp = 22,
+                dropTableId = "ham_female",
+                npcInternals = setOf("npc.favour_female_ham_civilian"),
+                aliases = setOf("female ham civilian", "female ham member"),
+                stunDamageMin = 1,
+                stunDamageMax = 3,
+                stunDuration = 5,
+                lowChance = 135,
+                highChance = 239,
+            ),
+            define(
+                id = "warrior",
+                level = 25,
+                xp = 26,
+                dropTableId = "warrior",
+                category = 1728,
+//                npcInternals = setOf("npc.al_kharid_warrior"),
+                aliases = setOf("warrior"),
+                stunDamageMin = 1,
+                stunDamageMax = 2,
+                stunDuration = 5,
+                lowChance = 100,
+                highChance = 240,
+            ),
+            define(
+                id = "villager",
+                level = 25,
+                xp = 8,
+                dropTableId = "villager",
+                npcInternals = setOf("npc.feud_villager_1_1"),
+                aliases = setOf("villager"),
+                stunDamageMin = 1,
+                stunDamageMax = 2,
+                stunDuration = 5,
+                lowChance = 100,
+                highChance = 240,
+            ),
+            define(
+                id = "rogue",
+                level = 32,
+                xp = 36,
+                dropTableId = "rogue",
+                npcInternals = setOf("npc.rogue", "npc.wilderness_rogue"),
+                aliases = setOf("rogue", "wilderness rogue"),
+                stunDamageMin = 1,
+                stunDamageMax = 2,
+                stunDuration = 5,
+                lowChance = 75,
+                highChance = 240,
+            ),
+            define(
+                id = "cave_goblin",
+                level = 36,
+                xp = 40,
+                dropTableId = "cave_goblin",
+                category = 373,
+                aliases = setOf("cave goblin"),
+                stunDamageMin = 1,
+                stunDamageMax = 1,
+                stunDuration = 5,
+                lowChance = 100,
+                highChance = 240,
+            ),
+            define(
+                id = "master_farmer",
+                level = 38,
+                xp = 43,
+                dropTableId = "master_farmer",
+                category = 641,
+                aliases = setOf("master farmer"),
+                stunDamageMin = 1,
+                stunDamageMax = 3,
+                stunDuration = 5,
+                lowChance = 90,
+                highChance = 240,
+            ),
+            define(
+                id = "guard",
+                level = 40,
+                xp = 46,
+                dropTableId = "guard",
+                category = 470,
+                aliases = setOf("guard"),
+                stunDamageMin = 1,
+                stunDamageMax = 2,
+                stunDuration = 5,
+                lowChance = 180,
+                highChance = 240,
+            ),
+            define(
+                id = "fremennik_citizen",
+                level = 70,
+                xp = 65,
+                dropTableId = "fremennik_citizen",
+                internalAliases = setOf("npc.viking_man", "npc.viking_woman"),
+                aliases = setOf("fremennik citizen"),
+                stunDamageMin = 2,
+                stunDamageMax = 3,
+                stunDuration = 5,
+                lowChance = 180,
+                highChance = 240,
+            ),
+            define(
+                id = "desert_bandit",
+                level = 70,
+                xp = 79,
+                dropTableId = "desert_bandit",
+                npcInternals = setOf(
+                    "npc.fourdiamonds_sword_bandit_1",
+                    "npc.fourdiamonds_sword_bandit_free",
+                ),
+                aliases = setOf("desert bandit"),
+                stunDamageMin = 2,
+                stunDamageMax = 3,
+                stunDuration = 5,
+                lowChance = 180,
+                highChance = 240,
+            ),
+            define(
+                id = "knight",
+                level = 55,
+                xp = 84,
+                dropTableId = "knight",
+                category = 1731,
+                aliases = setOf("knight of"),
+                stunDamageMin = 2,
+                stunDamageMax = 4,
+                stunDuration = 5,
+                lowChance = 180,
+                highChance = 240,
+            ),
+            define(
+                id = "watchman",
+                level = 70,
+                xp = 137,
+                dropTableId = "watchman",
+                npcInternals = setOf("npc.yanille_watchman"),
+                aliases = setOf("yanille watchman", "watchman"),
+                stunDamageMin = 2,
+                stunDamageMax = 3,
+                stunDuration = 5,
+                lowChance = 180,
+                highChance = 240,
+            ),
+            define(
+                id = "paladin",
+                level = 70,
+                xp = 131,
+                dropTableId = "paladin",
+                category = 1729,
+                aliases = setOf("paladin"),
+                stunDamageMin = 2,
+                stunDamageMax = 3,
+                stunDuration = 5,
+                lowChance = 180,
+                highChance = 240,
+            ),
+            define(
+                id = "gnome",
+                level = 80,
+                xp = 133,
+                dropTableId = "gnome",
+                category = 354,
+                aliases = setOf("gnome"),
+                stunDamageMin = 3,
+                stunDamageMax = 4,
+                stunDuration = 5,
+                lowChance = 180,
+                highChance = 240,
+            ),
+            define(
+                id = "hero",
+                level = 80,
+                xp = 163,
+                dropTableId = "hero",
+                category = 1730,
+                aliases = setOf("hero"),
+                stunDamageMin = 3,
+                stunDamageMax = 4,
+                stunDuration = 5,
+                lowChance = 180,
+                highChance = 240,
+            ),
+            define(
+                id = "vyre",
+                level = 80,
+                xp = 306,
+                dropTableId = "vyre",
+                category = 1451,
+                aliases = setOf("vyre", "vyrewatch"),
+                stunDamageMin = 3,
+                stunDamageMax = 4,
+                stunDuration = 5,
+                lowChance = 180,
+                highChance = 240,
+            ),
+            define(
+                id = "elf",
+                level = 80,
+                xp = 353,
+                dropTableId = "elf",
+                category = 1392,
+                internalAliases = setOf("mourning_town_elf"),
+                stunDamageMin = 3,
+                stunDamageMax = 4,
+                stunDuration = 5,
+                lowChance = 180,
+                highChance = 240,
+            ),
+            define(
+                id = "tzhaar", // TODO: Implement needing ice gloves
+                level = 80,
+                xp = 103,
+                dropTableId = "tzhaar",
+                category = 431,
+                aliases = setOf("tzhaar"),
+                stunDamageMin = 3,
+                stunDamageMax = 4,
+                stunDuration = 5,
+                lowChance = 180,
+                highChance = 240,
+            ),
+        )
+
+    private val byNpcInternal: Map<String, PickpocketDefinition> =
+        definitions
+            .flatMap { row -> row.npcInternals.map { npc -> npc to row } }
+            .toMap()
+
+    private val byCategory: Map<Int, PickpocketDefinition> =
+        definitions
+            .mapNotNull { row -> row.category?.let { it to row } }
+            .toMap()
+
+    fun all(): List<PickpocketDefinition> = definitions
+
+    fun resolve(type: NpcServerType): PickpocketDefinition? {
+        byNpcInternal[type.internalName]?.let { return it }
+        byCategory[type.category]?.let { return it }
+        definitions.firstOrNull { row -> row.internalAliases.any { type.internalName.startsWith("npc.$it") } }
+            ?.let { return it }
+
+        val normalizedName = normalizeThievingName(type.name)
+        val normalizedInternal = normalizeThievingName(type.internalName)
+        val paddedName = " $normalizedName "
+        val paddedInternal = " $normalizedInternal "
+        return definitions.firstOrNull { definition ->
+            definition.aliases.any { alias ->
+                val paddedAlias = " $alias "
+                paddedName.contains(paddedAlias) || paddedInternal.contains(paddedAlias)
+            }
+        }
+    }
+
+    private fun define(
+        id: String,
+        level: Int,
+        xp: Int,
+        dropTableId: String,
+        category: Int? = null,
+        npcInternals: Set<String> = emptySet(),
+        internalAliases: Set<String> = emptySet(),
+        aliases: Set<String> = emptySet(),
+        stunDamageMin: Int,
+        stunDamageMax: Int,
+        stunDuration: Int,
+        lowChance: Int,
+        highChance: Int,
+    ): PickpocketDefinition {
+        return PickpocketDefinition(
+            id = id,
+            level = level,
+            xp = xp,
+            dropTableId = dropTableId,
+            category = category,
+            npcInternals = npcInternals,
+            internalAliases = internalAliases,
+            aliases = aliases.mapTo(hashSetOf(), ::normalizeThievingName),
+            stunDamageMin = stunDamageMin,
+            stunDamageMax = stunDamageMax,
+            stunDuration = stunDuration,
+            lowChance = lowChance,
+            highChance = highChance,
+        )
+    }
+}
+
