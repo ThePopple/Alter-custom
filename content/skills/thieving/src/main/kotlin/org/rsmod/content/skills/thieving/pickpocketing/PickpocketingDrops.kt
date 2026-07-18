@@ -1,4 +1,4 @@
-package org.rsmod.content.skills.thieving
+package org.rsmod.content.skills.thieving.pickpocketing
 
 import dtx.rs.RSDropTable
 import dtx.rs.RSWeightedTable
@@ -30,12 +30,7 @@ internal object PickpocketingDrops {
     private val tablesById: Map<String, RSDropTable<Player, DropRollItem>> =
         listOf(
             PickpocketDropTable(
-                id = "citizen_man",
-                poolKey = POOL_CITIZEN,
-                coinPouch = CoinPouchReward("obj.pickpocket_coin_pouch_citizen"),
-            ),
-            PickpocketDropTable(
-                id = "citizen_woman",
+                id = "citizen",
                 poolKey = POOL_CITIZEN,
                 coinPouch = CoinPouchReward("obj.pickpocket_coin_pouch_citizen"),
             ),

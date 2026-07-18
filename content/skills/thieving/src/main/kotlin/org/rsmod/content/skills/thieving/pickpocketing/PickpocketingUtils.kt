@@ -1,6 +1,10 @@
-package org.rsmod.content.skills.thieving
+package org.rsmod.content.skills.thieving.pickpocketing
 
 import org.rsmod.game.entity.Player
+import org.rsmod.plugin.scripts.PluginScript
+import org.rsmod.plugin.scripts.ScriptContext
+
+internal val debugEnabled = false;
 
 private val rogueOutfitPieces =
     setOf(
@@ -33,3 +37,10 @@ internal fun Player.isWearingThievingCape(): Boolean =
     "obj.skillcape_thieving" in worn ||
         "obj.skillcape_thieving_trimmed" in worn
 
+internal fun Player.isWearingIceGloves(): Boolean = "obj.ice_gloves" in worn
+
+class PickpocketingUtils constructor() : PluginScript() {
+    override fun ScriptContext.startup() {
+
+    }
+}
